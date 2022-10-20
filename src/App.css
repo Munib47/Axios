@@ -1,0 +1,46 @@
+th, td {
+  border: 1px solid black;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  background-color: gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+input {
+  height: 20px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.btn {
+  background-color: lightgreen;
+  width: fit-content;
+  font-weight: bold;
+  margin-left: 75px;
+  border: none;
+}
+
+.btn:hover {
+  background-color: green;
+}
+
+.del {
+  background: red;
+  width: fit-content;
+}
+
+.del:hover {
+  background: lightcoral;
+}

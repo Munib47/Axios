@@ -25,21 +25,33 @@ function App() {
     axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
     .then(res => console.log('Deleted', res))
     .catch(err => console.log(err))
+    localStorage.removeItem("title")
+    localStorage.removeItem("body")
   }
 
-  const postData = (e) => {
-    e.preventDefault();
-    axios.post('https://jsonplaceholder.typicode.com/posts', {
-      title,
-      body
-    }).then (res => console.log('Posting data', res)).catch(err => console.log(err))
+  const postData = () => {
+    // e.preventDefault();
+    // axios.post('https://jsonplaceholder.typicode.com/posts', {
+    //   title,
+    //   body
+    // }).then (res => console.log('Posting data', res)).catch(err => console.log(err))
+    // localStorage.setItem("title", JSON.stringify(title))
+    // localStorage.setItem("body", JSON.stringify(body))
+    let tBody = document.getElementById('tbody')
+    let row = document.createElement('tr')
+    row.innerHTML = `
+      <td>${title}</td>
+      <td>${body}</td>
+      <td><button className="del">Delete</button></td>
+    `
+    tBody.appendChild(row)
   }
 
   return (
     <div>
       <div className="container">
         <div className="div">
-          <form>
+          <form onSubmit={postData}>
             <lablel htmlFor="title">Title</lablel>
             <input type="text" id="title" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
             <br />
@@ -52,17 +64,20 @@ function App() {
       <table>
         <thead>
           <tr>
-            <th>Serial</th>
             <th>Title</th>
             <th>Body</th>
           </tr>
         </thead>
-        <tbody className="tbody bg-secondary">
+        <tbody id="tbody">
+          {/* <tr onChange={postData}>
+            <td> {localStorage.getItem("title")} </td>
+            <td> {localStorage.getItem("body")} </td>
+            <td><button className="del" onClick={(e) => handleDelete(data.id, e)}>Delete</button></td>
+          </tr> */}
           {
             data.map((p) => {
               return (
                 <tr>
-                  <td>{p.id}</td>
                   <td>{p.title}</td>
                   <td>{p.body}</td>
                   <td><button className="del" onClick={(e) => handleDelete(data.id, e)}>Delete</button></td>
